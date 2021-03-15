@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<title>READABLY | ADMIN PANEL</title>
+<link th:href="@{/css/addProduct.css}" rel="stylesheet"/>
+<link th:href="@{/css/admin.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" /> 
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+	<span class="bg"></span>
+        <nav class="navbar">
+            <h2>MENU</h2>
+            <hr>
+            <ul style="display: flex; flex-direction: column;">
+                <a class="nav-link current" href="#" style="color: white; text-decoration: none;"><i class="fas fa-chart-line" style="margin-right: 1.4rem;"></i>Admin Dashboard</a>
+                <a class="nav-link" th:href="@{/viewuser}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Users</a>
+                <a class="nav-link" th:href="@{/viewproduct}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Products</a>
+                <a class="nav-link" th:href="@{/newProduct}" style="color: white; text-decoration: none;"><i class="fas fa-plus" style="margin-right: 1.8rem;"></i>Add New Product</a>
+            	<a class="nav-link" th:href="@{/viewCampaign}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Campaign</a>
+            	<a class="nav-link" th:href="@{/viewOrder}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Order</a>
+            </ul>
+        </nav>
+        <div class="flex-container"></div>
+        <div class="content">
+            <div class="header">
+                <h3 class="logo"><i class="fas fa-book"></i>Readably</h3>
+                <a th:href="@{/logout}">Sign Out <i class="fas fa-sign-out-alt"></i></a>
+
+                <div class="navigation">
+                    <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+        
+                    <label for="navi-toggle" class="navigation__button">
+                        <span class="navigation__icon">&nbsp;</span>
+                    </label>
+        
+                    <div class="navigation__background">&nbsp;</div>
+        
+                   <nav class="navigation__nav">
+                        <ul class="navigation__list">
+                            <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span>Admin Dashboard</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewuser}" class="navigation__link"><span>02</span>View Users</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewproduct}" class="navigation__link"><span>02</span>View Products</a></li>
+                            <li class="navigation__item"><a th:href="@{/newProduct}" class="navigation__link"><span>03</span>Add New Product</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewCampaign}" class="navigation__link"><span>02</span>View Campaign</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewOrder}" class="navigation__link"><span>02</span>View Order</a></li>
+                            <li class="navigation__item"><a th:href="@{/logout}" class="navigation__link"><span>04</span>Sign Out</a></li>
+                        </ul>
+                        
+                    </nav>
+                </div>
+            </div>
+            
+             <div class="form-content">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h3>Edit Product</h3>
+                        <h4><p th:text="${session.mySessionAttribute}"></p></h4>
+                    </div>
+                    <form  th:action="@{/save2}" th:object="${product}" method="post" enctype="multipart/form-data">
+                    	<div class="name">
+							<label>Product ID:</label>
+							<input type="text" th:field="*{id}" readonly="readonly" style="font-weight: bold; opacity: 0.7;" />
+						</div>
+						<div class="name">
+							<label>*Title:</label>
+							<input type="text" th:field="*{title}" required="required" placeholder="Enter Title" />
+						</div>
+						
+						<div class="name">
+							<label>*Author:</label>
+							<input type="text" th:field="*{author}" required="required" placeholder="Enter Author" />
+						</div>
+			
+						<div class="name">
+							<label>*Publisher:</label>
+							<input type="text" th:field="*{publisher}" required="required" placeholder="Enter Publisher" />
+						</div>
+						
+						<div class="name">
+							<label>Publication Date:</label>
+							<input class="inputField" type="date" th:field="*{publicationDate}" placeholder="Enter Publication Date" />
+						</div>
+						
+						<div class="name">
+							<label>Page Number:</label>
+							<input type="text" th:field="*{pageNumber}" placeholder="Enter Page Number" />
+						</div>
+		
+						<div class="name">
+								<label for="category">*Category</label>
+								<div >
+									<select th:value="${product.category}" id="category" name="category" class="inputField" placeholder="Please, select an option" required="required">
+										<option value="" selected="selected" disabled="disabled" >Please, select an option</option>
+										<option value="Science" th:selected="(${product.category}=='Science')">Science</option>
+										<option value="History" th:selected="(${product.category}=='History')">History</option>
+										<option value="Romance" th:selected="(${product.category}=='Romance')">Romance</option>
+										<option value="Biography" th:selected="(${product.category}=='Biography')">Biography</option>
+										<option value="Fiction" th:selected="(${product.category}=='Fiction')">Fiction</option>
+									</select>
+								</div>
+							</div>
+						
+						<div class="name">
+							<label>*ISBN:</label>
+							<input type="number" th:field="*{isbn}" required="required" />
+						</div>
+						
+						<div class="name">
+							<label>*List Price($):</label>
+							<span ><input type="number" step="0.01" th:field="*{listPriceTemporary}" required="required" placeholder="0.01" /></span>
+						</div>
+							
+						<div class="name">
+								<label for="discount">Discount</label>
+								<div >
+									<select th:value="${product.discount}" id="discount" name="discount" class="inputField" placeholder="Please, select an option" required="required">
+										<option value="" selected="selected" disabled="disabled" >Please, select an option</option>
+										<option value="0" th:selected="(${product.discount}==0)">0%</option>
+										<option value="10" th:selected="(${product.discount}==10)">10%</option>
+										<option value="25" th:selected="(${product.discount}==25)">25%</option>
+										<option value="35" th:selected="(${product.discount}==35)">35%</option>
+										<option value="50" th:selected="(${product.discount}==50)">50%</option>
+									</select>
+								</div>
+							</div>
+							
+						<div class="name">
+							<label>*Stock Number:</label>
+							<input type="number" th:field="*{stockNumberTemporary}" step="0" required="required" placeholder="Enter number of stock" />
+						</div>
+						
+						<div class="name">
+							<label>Enter Photo:</label>
+							<input id="productImage" type="file" name="productImage" th:value="${product.productImage}" />
+							<br/>
+						</div>
+						
+						<div class="name">
+							<label>Description:</label>
+							<textarea name="description" rows="4" cols="100" th:field="*{description}" placeholder="Description of the book...">	
+		    				</textarea>
+						</div>
+						
+						<div class="saveCss">
+							<input type="submit" name="" value="Save">
+						</div>
+					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+        });
+    </script>
+	
+</body>
+</html>
+

@@ -1,0 +1,138 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>My Account | Bookshop Responsive Bootstrap4 Template</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/icon.png">
+
+	<!-- Google font (font-family: 'Roboto', sans-serif; Poppins ; Satisfy) -->
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,500,600,600i,700,700i,800" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/plugins.css">
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Cusom css -->
+   <link rel="stylesheet" href="css/custom.css">
+
+	<!-- Modernizer js -->
+	<script src="js/vendor/modernizr-3.5.0.min.js"></script>
+	
+</head>
+
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="images/logo/logo.png" style="width:15%; max-width:300px;">
+                                 <font color = " #0066ff" face = "Times New Roman">READABLY</font>
+                            </td>
+                            <td>
+                            <p th:text="${'Order id:'+session.receipt.id}">sa<br></p>
+                            <p th:text="${session.receipt.date}">date</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="3">
+                    <table>
+                        <tr>
+                            <td>
+                                <p th:text="${session.receipt.address}">id<br></p>
+                                 <p th:text="${session.receipt.city}">id<br></p>
+                                <p th:text="${session.receipt.country}">id</p>
+                                
+                            </td>
+                             
+                            <td><p th:text="${session.receipt.email}"> </p>
+                             <p th:text="${session.receipt.first_name}">id</p>
+                       		 <p th:text="${session.receipt.second_name}">id</p>
+                                 
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="heading">
+                <td>
+                    Payment Method
+                </td>
+                	
+                <td>
+                     Credit Cart No
+                </td>
+            </tr>
+            
+               <tr class="details">
+                <td>Credit Cart</td>
+                
+                    
+                    <td th:text="${session.receipt.cart_num}">id</td>
+                     
+               </tr>
+            
+               <tr class="heading">
+                   <td>Product</td>
+                	
+                   <td> Price</td>
+              </tr>
+             
+              <tr th:each="item : ${session.cartItemsofSiparis}">
+              	
+              	<td th:text="${item.product.title}">id</td> 
+              	<td th:text="${item.quantity+ ' x $' + item.product.ourPrice + ' = '  + '$' + item.product.ourPrice * item.quantity}">id</td> 
+              	
+              </tr>
+              
+           		<tr class="heading">
+                   <td>Shipment Cost</td>
+                
+                   <td></td>
+              </tr>
+            
+             <tr class="item" >
+              
+                 <td ></td> 
+                <td th:text="${' $'+session.receipt.shipment_cost}">id</td> 
+                 
+			  </tr>
+            
+            
+            
+            
+            
+            <tr class="total">
+                <td></td>
+                
+                <td th:text="${'Total: $'+session.receipt.grandTotal}">id</td> 
+            </tr>
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   <button class="testButton1" onclick="window.print()"> <img src="images/icons/printicon.png" alt=""> </button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<title>READABLY | ADMIN PANEL</title>
+<link th:href="@{/css/productlist.css}" rel="stylesheet" />
+<link th:href="@{/css/addProduct.css}" rel="stylesheet"/>
+<link th:href="@{/css/admin.css}" rel="stylesheet" />
+<link th:href="@{/css/style.css}" rel="stylesheet" /> 
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="app">
+	<span class="bg"></span>
+        <nav class="navbar">
+            <h2>MENU</h2>
+            <hr>
+             <ul style="display: flex; flex-direction: column;">
+                <a class="nav-link current" href="#" style="color: white; text-decoration: none;"><i class="fas fa-chart-line" style="margin-right: 1.4rem;"></i>Admin Dashboard</a>
+                <a class="nav-link" th:href="@{/viewuser}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Users</a>
+                <a class="nav-link" th:href="@{/viewproduct}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Products</a>
+                <a class="nav-link" th:href="@{/newProduct}" style="color: white; text-decoration: none;"><i class="fas fa-plus" style="margin-right: 1.8rem;"></i>Add New Product</a>
+            	<a class="nav-link" th:href="@{/viewCampaign}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Campaign</a>
+            	<a class="nav-link" th:href="@{/viewOrder}" style="color: white; text-decoration: none;"><i class="fas fa-bookmark" style="margin-right: 1.8rem;"></i>View Order</a>
+            </ul>
+        </nav>
+        <div class="flex-container"></div>
+        <div class="content">
+            <div class="header">
+                <h3 class="logo"><i class="fas fa-book"></i>Readably</h3>
+                <a th:href="@{/logout}">Sign Out <i class="fas fa-sign-out-alt"></i></a>
+
+                <div class="navigation">
+                    <input type="checkbox" class="navigation__checkbox" id="navi-toggle">
+        
+                    <label for="navi-toggle" class="navigation__button">
+                        <span class="navigation__icon">&nbsp;</span>
+                    </label>
+        
+                    <div class="navigation__background">&nbsp;</div>
+        
+                   <nav class="navigation__nav">
+                        <ul class="navigation__list">
+                            <li class="navigation__item"><a href="#" class="navigation__link"><span>01</span>Admin Dashboard</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewuser}" class="navigation__link"><span>02</span>View Users</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewproduct}" class="navigation__link"><span>02</span>View Products</a></li>
+                            <li class="navigation__item"><a th:href="@{/newProduct}" class="navigation__link"><span>03</span>Add New Product</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewCampaign}" class="navigation__link"><span>02</span>View Campaign</a></li>
+                            <li class="navigation__item"><a th:href="@{/viewOrder}" class="navigation__link"><span>02</span>View Order</a></li>
+                            <li class="navigation__item"><a th:href="@{/logout}" class="navigation__link"><span>04</span>Sign Out</a></li>
+                        </ul>
+                        
+                    </nav>
+                </div>
+            </div>
+            
+             <div class="form-content">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h3>Order List</h3>
+                        <h4>Here you can see the orders.</h4>
+                    </div>
+                    
+                    <table class="table">
+						<thead>
+								<tr>
+										<th>Order ID</th>
+										<th>First Name</th>
+										<th>Second Name</th>
+										<th>Email</th>
+										<th>Our Price</th>
+										
+										<th>Status</th>
+									</tr>
+							</thead>
+							
+							<tbody>
+								<tr th:each="order : ${listOrders}">
+										<td th:text="${order.id}">Oder ID</td>
+										<td th:text="${order.first_name}">First Name</td>
+										<td th:text="${order.second_name}">Second Name</td>
+										<td th:text="${order.email}">Email</td>
+										<td th:text="${order.first_name}">Price</td>
+									
+									<td sec:authorize="hasRole('ADMIN')">
+										<a th:href="@{'/detail/' + ${order.id}}">See Detail</a>
+									</td>
+									
+								</tr>
+						</tbody>
+					</table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+            },
+        });
+    </script>
+	
+</body>
+</html>
+

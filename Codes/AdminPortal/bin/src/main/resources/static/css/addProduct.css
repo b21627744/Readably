@@ -1,0 +1,104 @@
+/* CSS Document */
+.nameheader{
+	margin: auto;
+	padding: 15px 0px 15px 0px;
+	width: 900px;
+	background-color:rgb(82, 121, 142, 0.5);
+	top: 50%;
+	text-align: center;
+	border-radius: 5px 5px;
+}
+
+.box{
+	margin: auto;
+	background-color: white;
+	width: 900px;
+	border-radius: 5px 5px;
+}
+
+.inputField{
+	position: relative;
+	margin: 10px 5px;
+	width: 50%;
+	line-height: 40px;
+	border-radius: 6px;
+	padding: 0 22px;
+}
+
+.name input[type="text"]{
+	position: relative;
+	margin: 10px 5px;
+	width: 50%;
+	line-height: 40px;
+	border-radius: 6px;
+	padding: 0 22px;
+}
+
+.name input[type="number"]{
+	position: relative;
+	margin: 10px 5px;
+	width: 50%;
+	line-height: 40px;
+	border-radius: 6px;
+	padding: 0 22px;
+}
+
+.name input[type="email"]{
+	position: relative;
+	margin: 10px 5px;
+	width: 50%;
+	line-height: 40px;
+	border-radius: 6px;
+	padding: 0 22px;
+}
+
+
+.name label{
+	display: block;
+	position: relative;
+	text-align: left;
+	font-size: 20px;
+	margin: 10px 5px;
+	font-weight: bold;
+}
+
+.status{
+	display:inline-block;
+	position: relative;
+	text-align: left;
+	font-size: 15px;
+	margin: 10px 5px;
+}
+
+.saveCss input[type="submit"]{
+	display: block;
+	text-transform: uppercase;
+	background: rgb(82, 121, 142, 0.3);
+	cursor: pointer;
+	margin: 20px auto;
+	text-align: center;
+	border: 2px solid;
+	padding: 15px 40px;
+	outline: none;
+	color: black;
+	border-radius: 24px;
+	transition: 0.25s;
+}
+
+.saveCss input[type="submit"]:hover{
+	background: rgb(82, 121, 162, 1);
+}
+
+.alert{
+	position: absolute;
+	padding: 15px 30px; 
+	background: #C0FBBF;
+	width: 300px;
+	top: 20px;
+	right: 2%;
+	border-radius: 20px;
+	color: #068C03;
+	border: 2px solid #48D945;
+}
+
+
